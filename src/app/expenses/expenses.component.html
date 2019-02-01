@@ -1,0 +1,40 @@
+<div class="ui container">
+  <div class="ui two column grid">
+    <div class="column">
+      <div class="ui segment">
+        <div class="ui stackable grid">
+          <div (mouseenter)="enter(i)" (mouseleave)="leave(i)" *ngFor="let expense of expenses; let i = index;" class="middle aligned row">
+            <div class="two wide column">
+                <i *ngIf="hoverIndex == i" class="pencil alternate icon"></i>
+            </div>
+            <div class="two wide column">
+              <p>${{expense.amount}}</p>
+            </div>
+            <div class="four wide column">
+              <p>{{expense.location}}</p>
+            </div>
+            <div class="four wide column">
+              <p>{{expense.date}}</p>
+            </div>
+            <div class="four wide column">
+              <p>{{expense.type}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button (click)="onNewExpense()" class="ui big primary button">New Expense</button>
+      <button (click)="onGraph()" class="ui big secondary button">Graph</button>
+    </div>
+
+    <div *ngIf="state == 2" class="column">
+      Show Graph
+    </div>
+    <div *ngIf="state == 1" class="column">
+      <div class="ui segment">
+        <app-new-expense (expense)="addExpense($event)" (state)="updateState($event)">
+        </app-new-expense>
+      </div>
+    </div>
+
+  </div>
+</div>

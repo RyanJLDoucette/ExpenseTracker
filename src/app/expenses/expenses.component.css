@@ -1,0 +1,11 @@
+.row:nth-child(even) {
+    background-color: #FFFF33;
+}
+
+.item {
+    text-align: center;
+}
+
+i {
+    color: #2185d0;
+}

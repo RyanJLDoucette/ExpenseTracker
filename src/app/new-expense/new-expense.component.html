@@ -1,0 +1,23 @@
+<i class="window minimize red fitted icon"></i>
+<form (ngSubmit)="onSubmit(amount.value, place.value, date.value, type.value)" #heroForm="ngForm" class="ui form">
+  <div class="field">
+    <label>Amount</label>
+    <input #amount type="text" name="amount" [placeholder]="model.amount">
+  </div>
+  <div class="field">
+    <label>Business</label>   
+    <input #place type="text" name="place" [placeholder]="model.place">
+  </div>
+  <div class="field">
+    <label>Date</label>
+    <input #date type="text" name="date" required [placeholder]="model.date">
+  </div>
+  <div class="field">
+    <label>Type of Expense</label>
+    <select #type id="expense" required>
+        <option *ngFor="let type of types" [value]="type">{{type}}</option>
+    </select>
+  </div>
+  <button class="ui big primary button" type="submit">Submit</button>
+</form>
+<button (click)="onGoBack()" class="ui big secondary button">Back</button>
