@@ -1,11 +1,12 @@
 <div class="ui container">
   <div class="ui two column grid">
+
     <div class="column">
       <div class="ui segment">
         <div class="ui stackable grid">
-          <div (mouseenter)="enter(i)" (mouseleave)="leave(i)" *ngFor="let expense of expenses; let i = index;" class="middle aligned row">
+          <div class="middle aligned row" *ngFor="let expense of expenses; let i = index;" (mouseenter)="mouseEnterRow(i)" (mouseleave)="mouseLeaveRow(i)">
             <div class="two wide column">
-                <i *ngIf="hoverIndex == i" class="pencil alternate icon"></i>
+              <i class="pencil alternate icon" *ngIf="hoverIndex == i" (click)="onEditExpense(expense, i)"></i>
             </div>
             <div class="two wide column">
               <p>${{expense.amount}}</p>
@@ -20,21 +21,27 @@
               <p>{{expense.type}}</p>
             </div>
           </div>
+          <div class="row">
+            <div class="column">
+              <button (click)="onNewExpense()" class="ui big primary button">New Expense</button>
+              <button (click)="onAnalyze()" class="ui big secondary button">Analyze</button>
+            </div>
+          </div>
         </div>
       </div>
-      <button (click)="onNewExpense()" class="ui big primary button">New Expense</button>
-      <button (click)="onGraph()" class="ui big secondary button">Graph</button>
     </div>
 
-    <div *ngIf="state == 2" class="column">
-      Show Graph
+    <div  class="column" *ngIf="state == 2">
+      <div class="ui segment">
+        <app-edit-expense [expense]="selectedExpense" (didDelete)="deleteExpense($event)" 
+          (state)="updateState($event)" (editedExpense)="editExpense($event)">
+        </app-edit-expense>
+      </div>
     </div>
     <div *ngIf="state == 1" class="column">
       <div class="ui segment">
-        <app-new-expense (expense)="addExpense($event)" (state)="updateState($event)">
-        </app-new-expense>
+        <app-new-expense (expense)="addExpense($event)" (state)="updateState($event)"></app-new-expense>
       </div>
     </div>
-
   </div>
 </div>

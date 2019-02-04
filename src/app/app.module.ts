@@ -5,12 +5,14 @@ import { AppComponent } from './app.component';
 import { ExpensesComponent } from './expenses/expenses.component';
 import { NewExpenseComponent } from './new-expense/new-expense.component';
 import { FormsModule }   from '@angular/forms';
+import { EditExpenseComponent } from './edit-expense/edit-expense.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ExpensesComponent,
-    NewExpenseComponent
+    NewExpenseComponent,
+    EditExpenseComponent
   ],
   imports: [
     BrowserModule,

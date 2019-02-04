@@ -1,0 +1,26 @@
+<form (ngSubmit)="onEditExpense(amount.value, place.value, date.value, type.value)" #heroForm="ngForm" class="ui form">
+  <div class="field">
+    <label>Amount</label>
+    <input #amount type="text" name="amount" [ngModel]="expense.amount">
+    <div *ngIf="amount.errors?.required">
+      This field is required.
+    </div>
+  </div>
+  <div class="field">
+    <label>Business</label>
+    <input #place type="text" name="place" [ngModel]="expense.location">
+  </div>
+  <div class="field">
+    <label>Date</label>
+    <input #date type="text" name="date" required [ngModel]="expense.date">
+  </div>
+  <div class="field">
+    <label>Type of Expense</label>
+    <select #type id="expense">
+      <option *ngFor="let type of types" [value]="type">{{type}}</option>
+    </select>
+  </div>
+  <button class="ui big primary button" type="submit">Confirm Changes</button>
+  <button type="button" (click)="onGoBack()" class="ui big secondary button">Exit</button>
+  <button type="button" (click)="onDeleteExpense()" class="ui big red button">Delete Expense</button>
+</form>
